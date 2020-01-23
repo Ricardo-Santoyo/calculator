@@ -8,35 +8,39 @@ let b = "";
 let operator = "";
 
 function add(a, b) {
-    return a + b;
+    return Number(a) + Number(b);
 }
 
 function subtract(a, b) {
-    return a - b;
+    return Number(a) - Number(b);
 }
 
 function multiply(a, b) {
-    return a * b;
+    return Number(a) * Number(b);
 }
 
 function divide(a, b) {
-    return a / b;
+    return Number(a) / Number(b);
 }
 
 function operate(a, b, operator) {
     switch (operator) {
-        case 'add':
+        case '+':
             const sum = add(a, b);
-            return sum;
-        case 'subtract':
+            display.textContent = "= " + sum;
+            break;
+        case '−':
             const difference = subtract(a, b);
-            return difference;
-        case 'multiply':
+            display.textContent = "= " + difference;
+            break;
+        case '×':
             const product = multiply(a, b);
-            return product;
-        case 'divide':
+            display.textContent = "= " + product;
+            break;
+        case '÷':
             const quotient = divide(a, b);
-            return quotient;
+            display.textContent = "= " + quotient;
+            break;
     }
 }
 
@@ -53,6 +57,8 @@ function displayOperators(e) {
             display.textContent += operatorSelected;
             operator += operatorSelected;
             break;
+        case "=":
+            operate(a, b, operator);
     }
 
 }
