@@ -58,6 +58,12 @@ function displayOperators(e) {
             operator += operatorSelected;
             break;
         case "=":
+            if (b == "" && a == "") {
+                return display.textContent = "= " + 0;
+            }
+            else if (b == "") {
+                return display.textContent = "= " + a;
+            }
             operate(a, b, operator);
             break;
         case "AC":
