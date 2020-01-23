@@ -59,6 +59,13 @@ function displayOperators(e) {
             break;
         case "=":
             operate(a, b, operator);
+            break;
+        case "AC":
+            display.innerHTML = 0;
+            a = "";
+            b = "";
+            operator = "";
+            break;
     }
 
 }
