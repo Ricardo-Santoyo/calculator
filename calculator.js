@@ -19,6 +19,9 @@ function multiply(numValue) {
 };
 
 function divide(numValue) {
+    if (numValue[1] == 0) {
+        return "Divide by 0 error";
+    }
     return numValue.reduce((accumulatedQuotient, currentNum) => accumulatedQuotient / currentNum);
 };
 
