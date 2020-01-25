@@ -76,6 +76,9 @@ function displayOperators(e) {
         case "AC":
             clear();
             break;
+        case "backspace":
+            backspace();
+            break;
     }
 
 };
@@ -135,8 +138,10 @@ function pemdas() {
 };
 
 function pushN() {
-    storeValue.push(Number(n));
-    n = "";
+    if (n != "") {
+        storeValue.push(Number(n));
+        n = "";
+    }
 };
 
 function clear() {
@@ -156,3 +161,12 @@ function removeZero() {
 function roundAns() {
     return finalAns = Math.round(storeValue * 1e9) / 1e9
 };
+
+function backspace() {
+    pushN();
+    storeValue.pop();
+    display.textContent = "";
+    storeValue.forEach(value => {
+        display.textContent += value;
+    });
+}
