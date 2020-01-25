@@ -92,6 +92,13 @@ function displayNum(e) {
             display.textContent += num;
             n += num;
             break;
+        case "decimal":
+            if (n.includes(".")) {
+                return;
+            }
+            display.textContent += ".";
+            n += ".";
+            break;
     }
 };
 
