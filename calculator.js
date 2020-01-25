@@ -3,6 +3,7 @@ const operators = document.querySelector('#operators');
 const numpad = document.querySelector('#numpad');
 display.textContent = 0;
 let n = "";
+let finalAns = "";
 let numValue = [];
 let storeValue = [];
 
@@ -63,7 +64,8 @@ function displayOperators(e) {
             };
             pushN();
             pemdas();
-            display.textContent = "= " + storeValue;
+            roundAns();
+            display.textContent = "= " + finalAns;
             break;
         case "AC":
             clear();
@@ -142,4 +144,8 @@ function removeZero() {
     if (display.textContent == 0) {
         display.textContent = "";
     }
+};
+
+function roundAns() {
+    return finalAns = Math.round(storeValue * 1e9) / 1e9
 };
