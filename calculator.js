@@ -164,10 +164,7 @@ function roundAns() {
 };
 
 function backspace() {
-    if (display.textContent.includes("+") == false ||
-        display.textContent.includes("−") == false ||
-        display.textContent.includes("×") == false ||
-        display.textContent.includes("÷") == false) {
+    if (storeValue.length < 2) {
         return;
     }
     pushN();
