@@ -50,6 +50,14 @@ function displayOperators(e) {
             storeValue.push(operatorSelected);
             break;
         case "=":
+            if (n == "" && storeValue.length < 3) {
+                return display.textContent = "= " + storeValue[storeValue.length - 2];
+            }
+            else if (n == "") {
+                storeValue.splice(storeValue.length - 1,1);
+                pemdas();
+                return display.textContent = "= " + storeValue;
+            };
             pushN();
             pemdas();
             display.textContent = "= " + storeValue;
@@ -117,6 +125,7 @@ function clear() {
     display.innerHTML = 0;
     numValue = [];
     storeValue = [];
+    n = "";
 };
 
 function removeZero() {
