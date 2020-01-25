@@ -50,6 +50,7 @@ function displayOperators(e) {
         case "×":
         case "÷":
             pushN();
+            addZero();
             display.textContent += operatorSelected;
             storeValue.push(operatorSelected);
             break;
@@ -153,7 +154,7 @@ function clear() {
 };
 
 function removeZero() {
-    if (display.textContent == 0 && n == "") {
+    if (display.textContent == 0 && n == "" || display.textContent == "= 0" && n == "") {
         display.textContent = "";
     }
 };
@@ -163,10 +164,23 @@ function roundAns() {
 };
 
 function backspace() {
+    if (display.textContent.includes("+") == false ||
+        display.textContent.includes("−") == false ||
+        display.textContent.includes("×") == false ||
+        display.textContent.includes("÷") == false) {
+        return;
+    }
     pushN();
     storeValue.pop();
     display.textContent = "";
     storeValue.forEach(value => {
         display.textContent += value;
     });
-}
+};
+
+function addZero() {
+    if(display.textContent == "0" && n == "" || display.textContent == "= 0" && n == "") {
+        storeValue.splice(0,2);
+        storeValue.push(0);
+    }
+};
