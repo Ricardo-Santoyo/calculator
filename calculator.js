@@ -1,48 +1,39 @@
 const display = document.querySelector('#display');
 const operators = document.querySelector('#operators');
 const numpad = document.querySelector('#numpad');
-let defaultText = 0;
-    display.textContent = defaultText;
-let a = "";
-let b = "";
-let operator = "";
+display.textContent = 0;
+let n = "";
+let numValue = [];
+let storeValue = [];
 
-function add(a, b) {
-    return Number(a) + Number(b);
-}
+function add(numValue) {
+    return numValue.reduce((accumulatedSum, currentNum) => accumulatedSum + currentNum);
+};
 
-function subtract(a, b) {
-    return Number(a) - Number(b);
-}
+function subtract(numValue) {
+    return numValue.reduce((accumulatedDifference, currentNum) => accumulatedDifference - currentNum);
+};
 
-function multiply(a, b) {
-    return Number(a) * Number(b);
-}
+function multiply(numValue) {
+    return numValue.reduce((accumulatedProduct, currentNum) => accumulatedProduct * currentNum);
+};
 
-function divide(a, b) {
-    return Number(a) / Number(b);
-}
+function divide(numValue) {
+    return numValue.reduce((accumulatedQuotient, currentNum) => accumulatedQuotient / currentNum);
+};
 
-function operate(a, b, operator) {
+function operate(numValue, operator) {
     switch (operator) {
-        case '+':
-            const sum = add(a, b);
-            display.textContent = "= " + sum;
-            break;
-        case '−':
-            const difference = subtract(a, b);
-            display.textContent = "= " + difference;
-            break;
-        case '×':
-            const product = multiply(a, b);
-            display.textContent = "= " + product;
-            break;
-        case '÷':
-            const quotient = divide(a, b);
-            display.textContent = "= " + quotient;
-            break;
+        case "+":
+            return add(numValue);
+        case "−":
+            return subtract(numValue);
+        case "×":
+            return multiply(numValue);
+        case "÷":
+            return divide(numValue);
     }
-}
+};
 
 operators.addEventListener('click', displayOperators);
 
@@ -54,34 +45,26 @@ function displayOperators(e) {
         case "−":
         case "×":
         case "÷":
+            pushN();
             display.textContent += operatorSelected;
-            operator += operatorSelected;
+            storeValue.push(operatorSelected);
             break;
         case "=":
-            if (b == "" && a == "") {
-                return display.textContent = "= " + 0;
-            }
-            else if (b == "") {
-                return display.textContent = "= " + a;
-            }
-            operate(a, b, operator);
+            pushN();
+            pemdas();
+            display.textContent = "= " + storeValue;
             break;
         case "AC":
-            display.innerHTML = 0;
-            a = "";
-            b = "";
-            operator = "";
+            clear();
             break;
     }
 
-}
+};
 
 numpad.addEventListener('click', displayNum)
 
 function displayNum(e) {
-    if (display.textContent == 0) {
-        display.textContent = "";
-    }
+    removeZero();
     let num;
     num = e.target.id
     switch (num) {
@@ -96,12 +79,48 @@ function displayNum(e) {
         case "9":
         case "0":
             display.textContent += num;
-            if (operator != "") {
-                b += num;
-            }
-            else if (operator == "") {
-                a += num;
-            }
+            n += num;
             break;
     }
-}
+};
+
+function pemdas() {
+    for (i = 0; i < storeValue.length; i++) {
+        if (storeValue[i] == "×" || storeValue[i] == "÷") {
+            numValue.push(storeValue[i - 1]);
+            numValue.push(storeValue[i + 1]);
+            result = operate(numValue, storeValue[i]);
+            storeValue.splice(i - 1, 3, result);
+            i = 0;
+            numValue = [];
+        }
+    }
+
+    for (i = 0; i < storeValue.length; i++) {
+        if (storeValue[i] == "+" || storeValue[i] == "−") {
+            numValue.push(storeValue[i - 1]);
+            numValue.push(storeValue[i + 1]);
+            result = operate(numValue, storeValue[i]);
+            storeValue.splice(i - 1, 3, result);
+            i = 0;
+            numValue = [];
+        }
+    }
+};
+
+function pushN() {
+    storeValue.push(Number(n));
+    n = "";
+};
+
+function clear() {
+    display.innerHTML = 0;
+    numValue = [];
+    storeValue = [];
+};
+
+function removeZero() {
+    if (display.textContent == 0) {
+        display.textContent = "";
+    }
+};
