@@ -54,7 +54,10 @@ function displayOperators(e) {
             storeValue.push(operatorSelected);
             break;
         case "=":
-            if (n == "" && storeValue.length < 3) {
+            if (display.textContent == 0) {
+                return display.textContent = "= 0";
+            }
+            else if (n == "" && storeValue.length < 3) {
                 return display.textContent = "= " + storeValue[storeValue.length - 2];
             }
             else if (n == "") {
@@ -64,6 +67,9 @@ function displayOperators(e) {
             };
             pushN();
             pemdas();
+            if (storeValue[0] == "Divide by 0 error") {
+                return display.textContent = "= " + storeValue;
+            };
             roundAns();
             display.textContent = "= " + finalAns;
             break;
@@ -138,10 +144,11 @@ function clear() {
     numValue = [];
     storeValue = [];
     n = "";
+    finalAns = "";
 };
 
 function removeZero() {
-    if (display.textContent == 0) {
+    if (display.textContent == 0 && n == "") {
         display.textContent = "";
     }
 };
