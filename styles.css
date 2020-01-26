@@ -11,10 +11,13 @@ body {
 }
 
 #display {
-    margin-top: 68px;
-    padding: 9px 0px;
+    margin-top: 150px;
+    padding: 29px 20px 9px 0px;
+    text-align: right;
     font-size: 36px;
     color: white;
+    background-color: black;
+    border-bottom: 0.25px solid rgb(163, 163, 163);
 }
 
 #numpad {
@@ -38,34 +41,47 @@ body {
     width: 90px;
 }
 
-#AC {
-    color: #ff8a00;
-}
-
-#backspace {
-    color: #ff8a00;
-}
-
+#AC,
+#backspace,
 #percent {
-    color: #ff8a00;
+    font-size: 20px;
+    color: #df6400;
+    background-color: black;
+    border: 2px solid black;
 }
 
 #÷ {
-    color: #ff8a00;
+    font-size: 25px;
+    color: #df6400;
+    background-color: black;
+    border: 2px solid black;
 }
 
-#× {
-    flex: 1;
-}
-
-#− {
-    flex: 1;
-}
-
-[id= '+'] {
-    flex: 1;
-}
-
+[id= '×'],
+[id= '−'],
+[id= '+'],
 [id= '='] {
+    font-size: 25px;
+    color: #df6400;
+    background-color: black;
+    border: 2px solid black;
     flex: 1;
+}
+
+[id= '1'],
+[id= '2'],
+[id= '3'],
+[id= '4'],
+[id= '5'],
+[id= '6'],
+[id= '7'],
+[id= '8'],
+[id= '9'],
+#empty,
+[id= '0'],
+#decimal {
+    font-size: 20px;
+    color: white;
+    background-color: black;
+    border: 2px solid black;
 }
