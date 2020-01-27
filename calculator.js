@@ -58,6 +58,10 @@ function displayOperators(e) {
             if (display.textContent == 0) {
                 return display.textContent = "= 0";
             }
+            else if (n == "" && typeof(storeValue[storeValue.length - 1]) == "number") {
+                pemdas();
+                return display.textContent = "= " + storeValue;
+            }
             else if (n == "" && storeValue.length < 3) {
                 return display.textContent = "= " + storeValue[storeValue.length - 2];
             }
@@ -79,6 +83,9 @@ function displayOperators(e) {
             break;
         case "backspace":
             backspace();
+            break;
+        case "percent":
+            percent();
             break;
     }
 
@@ -111,6 +118,11 @@ function displayNum(e) {
             display.textContent += ".";
             n += ".";
             break;
+        case "empty":
+            if (display.textContent == 0) { 
+                display.textContent = 0;
+            }
+            return display.textContent;
     }
 };
 
@@ -180,4 +192,11 @@ function addZero() {
         storeValue.splice(0,2);
         storeValue.push(0);
     }
+};
+
+function percent() {
+    n = n / 100;
+    display.textContent = "";
+    pushN();
+    storeValue.forEach(value => display.textContent += value);
 };
