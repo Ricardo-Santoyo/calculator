@@ -1,5 +1,5 @@
 body {
-    background-color:rgb(37, 37, 37);
+    background-color:rgb(25, 25, 25);
 }
 
 #content {
@@ -7,11 +7,14 @@ body {
     text-align: center;
     width: 360px;
     margin: auto;
+    margin-top: 150px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 36px 3px;
+    border: 9px solid;
+    border-radius: 25px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 #display {
-    margin-top: 150px;
     padding: 29px 20px 9px 0px;
     text-align: right;
     font-size: 36px;
@@ -51,7 +54,7 @@ body {
 }
 
 #÷ {
-    font-size: 25px;
+    font-size: 30px;
     color: #df6400;
     background-color: black;
     border: 2px solid black;
@@ -61,7 +64,7 @@ body {
 [id= '−'],
 [id= '+'],
 [id= '='] {
-    font-size: 25px;
+    font-size: 30px;
     color: #df6400;
     background-color: black;
     border: 2px solid black;
@@ -80,8 +83,54 @@ body {
 #empty,
 [id= '0'],
 #decimal {
-    font-size: 20px;
+    font-size: 30px;
     color: white;
     background-color: black;
     border: 2px solid black;
+}
+
+#AC:hover,
+#backspace:hover,
+#percent:hover,
+#÷:hover,
+[id= '1']:hover,
+[id= '2']:hover,
+[id= '3']:hover,
+[id= '4']:hover,
+[id= '5']:hover,
+[id= '6']:hover,
+[id= '7']:hover,
+[id= '8']:hover,
+[id= '9']:hover,
+#empty:hover,
+[id= '0']:hover,
+#decimal:hover,
+[id= '×']:hover,
+[id= '−']:hover,
+[id= '+']:hover,
+[id= '=']:hover {
+    opacity: 0.5;
+}
+
+#AC:focus,
+#backspace:focus,
+#percent:focus,
+#÷:focus,
+[id= '1']:focus,
+[id= '2']:focus,
+[id= '3']:focus,
+[id= '4']:focus,
+[id= '5']:focus,
+[id= '6']:focus,
+[id= '7']:focus,
+[id= '8']:focus,
+[id= '9']:focus,
+#empty:focus,
+[id= '0']:focus,
+#decimal:focus,
+[id= '×']:focus,
+[id= '−']:focus,
+[id= '+']:focus,
+[id= '=']:focus {
+    outline: none;
 }
