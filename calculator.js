@@ -195,6 +195,16 @@ function addZero() {
 };
 
 function percent() {
+    if (display.textContent == 0 || display.textContent == "= 0") {
+        return;
+    }
+    if (n == "" && storeValue.length > 1) {
+        return;
+    }
+    if (n == "") {
+        n = storeValue[0];
+        storeValue = [];
+    }
     n = n / 100;
     display.textContent = "";
     pushN();
