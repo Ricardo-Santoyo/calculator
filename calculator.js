@@ -62,6 +62,10 @@ function displayOperators(e) {
                 pemdas();
                 return display.textContent = "= " + storeValue;
             }
+            else if (n == "" && storeValue.length == 2) {
+                storeValue.splice(1, 1);
+                return display.textContent = "= " + storeValue[0];
+            }
             else if (n == "" && storeValue.length < 3) {
                 return display.textContent = "= " + storeValue[storeValue.length - 2];
             }
